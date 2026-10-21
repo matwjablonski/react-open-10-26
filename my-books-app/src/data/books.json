@@ -1,0 +1,20 @@
+[
+  {
+    "id": "book-1",
+    "title": "The Girl with the Dragon Tattoo",
+    "author": "Stieg Larsson",
+    "publicationDate": "2005-08-01"
+  },
+  {
+    "id": "book-2",
+    "title": "Becoming",
+    "author": "Michelle Obama",
+    "publicationDate": "2018-11-13"
+  },
+  {
+    "id": "book-3",
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "publicationDate": "1813-01-28"
+  }
+]
