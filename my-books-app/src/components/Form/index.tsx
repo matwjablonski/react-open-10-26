@@ -1,11 +1,16 @@
-import type { PropsWithChildren } from "react"
+import type { SubmitEvent, PropsWithChildren } from "react"
 
 type FormProps = {
-    onSubmit?: () => void; 
+    onSubmit: () => void; 
 };
 
-export const Form = ({ children }: PropsWithChildren<FormProps>) => {
-    return <form>
+export const Form = ({ children, onSubmit }: PropsWithChildren<FormProps>) => {
+    const handleSubmit = (e: SubmitEvent) => {
+        e.preventDefault();
+        onSubmit();
+    }
+
+    return <form onSubmit={handleSubmit}>
         {children}
     </form>
 }
