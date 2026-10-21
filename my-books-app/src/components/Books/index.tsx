@@ -1,4 +1,4 @@
-import type { Book } from "../../types"
+import type { Book } from "../../types/book"
 import { Book as BookItem } from "../Book";
 
 type BooksProps = {
