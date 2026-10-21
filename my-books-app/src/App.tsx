@@ -3,6 +3,7 @@ import { Books } from './components/Books';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import data from './data/books.json';
+import { UserInfo } from './components/UserInfo';
 
 function App() {
   const [ readBooksIds, setReadBooksIds ] = useState<string[]>([]);
@@ -22,7 +23,9 @@ function App() {
 
   return (
     <main>
-      <Header name="Romku" />
+      <Header name="Romku">
+        <UserInfo />
+      </Header>
       <Books 
         data={data}
         setReadBook={setReadBook}
