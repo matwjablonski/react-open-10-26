@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent } from "react"
+import { useRef, useState, type ChangeEvent } from "react"
 import { Form } from "../Form";
 import { Input } from "../Input";
 
@@ -14,6 +14,7 @@ export const ContactForm = () => {
         phoneNo: '',
         message: '',
     });
+    const firstInputRef = useRef<HTMLInputElement>(null);
 
     const handleSubmit = () => {
         console.log('dane do console', formValues);
@@ -26,12 +27,19 @@ export const ContactForm = () => {
         }));
     }
 
+    const handleSetFocus = () => {
+        firstInputRef.current?.focus()
+    }
+
     return (
-        <Form onSubmit={handleSubmit}>
-            <Input value={formValues.name} label="Imię" onChange={handleChange} name="name" />
-            <Input value={formValues.phoneNo} label="Numer telefonu" onChange={handleChange} name="phoneNo" />
-            <textarea value={formValues.message} name="message" onChange={handleChange}/>
-            <button type="submit">Wyślij</button>
-        </Form>
+        <div>
+            <button onClick={handleSetFocus}>Napisz do nas</button>
+            <Form onSubmit={handleSubmit}>
+                <Input value={formValues.name} label="Imię" onChange={handleChange} name="name" ref={firstInputRef}/>
+                <Input value={formValues.phoneNo} label="Numer telefonu" onChange={handleChange} name="phoneNo" />
+                <textarea value={formValues.message} name="message" onChange={handleChange}/>
+                <button type="submit">Wyślij</button>
+            </Form>
+        </div>
     )
 }
