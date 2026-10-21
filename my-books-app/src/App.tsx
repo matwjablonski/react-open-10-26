@@ -9,7 +9,7 @@ function App() {
   
   const setReadBook = (id: string) => {
     setReadBooksIds((ids) => {
-      if (ids.find(i => i === id)) {
+      if (readBooksIds.includes(id)) {
         return ids.filter(i => i !== id);
       }
       return [...ids, id];
