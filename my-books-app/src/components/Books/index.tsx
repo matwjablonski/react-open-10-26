@@ -1,5 +1,5 @@
 import type { Book } from "../../types"
-import BookItem from "../Book";
+import { Book as BookItem } from "../Book";
 
 type BooksProps = {
     data: Book[];
