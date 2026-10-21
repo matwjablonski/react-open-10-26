@@ -5,13 +5,29 @@ import Header from './components/Header';
 import data from './data/books.json';
 
 function App() {
-  const [ count, setCount ] = useState() // [State, StateHandler]
+  const [ readBooksIds, setReadBooksIds ] = useState<string[]>([]);
+  
+  const setReadBook = (id: string) => {
+    setReadBooksIds((ids) => {
+      if (ids.find(i => i === id)) {
+        return ids.filter(i => i !== id);
+      }
+      return [...ids, id];
+    })
+  }
 
+  const checkIfWasRead = (id: string): boolean => {
+    return readBooksIds.includes(id);
+  }
 
   return (
     <main>
       <Header name="Romku" />
-      <Books data={data} />
+      <Books 
+        data={data}
+        setReadBook={setReadBook}
+        checkIfWasRead={checkIfWasRead}
+      />
       <Footer />
     </main>
   )
