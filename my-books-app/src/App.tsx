@@ -1,3 +1,4 @@
+import Header from './components/Header';
 import data from './data/books.json';
 
 type Book = {
@@ -10,7 +11,7 @@ type Book = {
 function App() {
   return (
     <main>
-      <h1>Witaj w mojej aplikacji</h1>
+      <Header name="Romku" />
       <h2>Lista książek</h2>
       <ul>
         {(data as Book[]).map((book) => <li key={book.id}>
