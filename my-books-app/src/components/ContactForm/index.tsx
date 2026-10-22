@@ -33,7 +33,9 @@ export const ContactForm = () => {
 
     return (
         <div>
-            <button onClick={handleSetFocus}>Napisz do nas</button>
+            <button onClick={handleSetFocus} style={{
+                border: '2px solid red'
+            }}>Napisz do nas</button>
             <Form onSubmit={handleSubmit}>
                 <Input value={formValues.name} label="Imię" onChange={handleChange} name="name" ref={firstInputRef}/>
                 <Input value={formValues.phoneNo} label="Numer telefonu" onChange={handleChange} name="phoneNo" />
