@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { buildApiUrl } from "../utils/buildApiUrl";
 
 type ApiResponseType<T> = {
     data: T | null,
@@ -6,9 +7,9 @@ type ApiResponseType<T> = {
     error: string | null,
 }
 
-const apiUrl = 'https://jsonplaceholder.typicode.com/';
+type Area = 'public' | 'api';
 
-export const useApi = <T>(endpoint: string) => {
+export const useApi = <T>(endpoint: string, area: Area = 'api' ) => {
     const [apiState, setApiState] = useState<ApiResponseType<T>>({
         data: null,
         isLoading: false,
@@ -26,7 +27,8 @@ export const useApi = <T>(endpoint: string) => {
             });
 
             try {
-                const res = await fetch(`${apiUrl}${endpoint}`, { signal: controller.signal });
+                
+                const res = await fetch(area === 'api' ? buildApiUrl(endpoint) : endpoint, { signal: controller.signal });
                 if (!res.ok) {
                     throw new Error('Bład pobierania uzytkownikow');
                 }
