@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { BookProps } from "./Book.types";
+import { Link } from "react-router";
 
 export function Book(props: BookProps) {
     const { title, author, publicationDate, id, wasRead, setReadBook, handleRemoveBook } = props;
@@ -24,6 +25,7 @@ export function Book(props: BookProps) {
             <button onClick={clickHandler}>{btnLabel}</button>
             <button onClick={handleAddVote}>Głosuj na tę pozycję</button>
             <button onClick={() => handleRemoveBook(id)}>Usuń książkę</button>
+            <Link to={`/books/${id}`}>Zobacz szczegoly</Link>
         </>
     )
 }

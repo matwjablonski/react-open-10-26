@@ -1,42 +1,28 @@
-import { useState } from 'react';
-import { Books } from './components/Books';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import data from './data/books.json';
-import { UserInfo } from './components/UserInfo';
-import { WindowTitleChanger } from './components/WindowTitleChanger';
-import Readers from './components/Readers';
-import { Outlet, Route, Routes } from 'react-router';
-
-const Layout = () => {
-  return <div><Outlet/></div>
-}
+// import { useState } from 'react';
+// import { WindowTitleChanger } from './components/WindowTitleChanger';
+import { Route, Routes } from 'react-router';
+import Layout from './components/Layout';
+import { HomePage } from './pages/HomePage';
+import ReadersPage from './pages/ReadersPage';
+import { BooksPage } from './pages/BooksPage';
+import { BookPage } from './pages/BookPage';
+import { ContactPage } from './pages/ContactPage';
 
 function App() {
-  const [ isTitleChanged, setIsTitleChanged ] = useState(true);
-  
+  // const [ isTitleChanged, setIsTitleChanged ] = useState(true);
   return (
     <main>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={} />
+          <Route index element={<HomePage />} />
+          <Route path="readers" element={<ReadersPage />} />
+          <Route path="books" element={<BooksPage />} />
+          <Route path="books/:id" element={<BookPage />} />
+          <Route path="contact-us" element={<ContactPage />} />
         </Route>
       </Routes>
-      
-      
-      
-    
-      
-      <button onClick={() => { setIsTitleChanged(v => !v)}}>Zaktualizuj tytuł</button>
-      <Header name="Romku">
-        <UserInfo />
-      </Header>
-      <Readers />
-      <Books 
-        data={data}
-      />
-      <Footer />
-      {isTitleChanged && <WindowTitleChanger booksAmount={data.length} />}
+      {/* <button onClick={() => { setIsTitleChanged(v => !v)}}>Zaktualizuj tytuł</button>
+      {isTitleChanged && <WindowTitleChanger booksAmount={data.length} />} */}
     </main>
   )
 }
