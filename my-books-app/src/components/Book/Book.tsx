@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { BookProps } from "./Book.types";
 
 export function Book(props: BookProps) {
-    const { title, author, publicationDate, id, wasRead, setReadBook } = props;
+    const { title, author, publicationDate, id, wasRead, setReadBook, handleRemoveBook } = props;
 
     const [votes, setVotes] = useState(() => Math.floor(author.length * 2 / 5));
 
@@ -23,6 +23,7 @@ export function Book(props: BookProps) {
             <p>{publicationDate}</p>
             <button onClick={clickHandler}>{btnLabel}</button>
             <button onClick={handleAddVote}>Głosuj na tę pozycję</button>
+            <button onClick={() => handleRemoveBook(id)}>Usuń książkę</button>
         </>
     )
 }

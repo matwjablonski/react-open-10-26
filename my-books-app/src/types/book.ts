@@ -3,4 +3,5 @@ export type Book = {
   title: string;
   publicationDate: string;
   author: string;
+  read: boolean;
 }

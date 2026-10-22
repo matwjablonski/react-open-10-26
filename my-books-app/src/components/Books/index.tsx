@@ -4,37 +4,53 @@ import { Book as BookItem } from "../Book";
 
 type BooksProps = {
     data: Book[];
-    setReadBook: (id: string) => void;
-    checkIfWasRead: (id: string) => boolean;
 }
 
+type DeleteBookActionType = 'book/delete';
+type AddBookActionType = 'book/add';
+type ReadBookActionType = 'book/read';
+
 type DeleteBookAction = {
-    type: 'book/delete',
+    type: DeleteBookActionType,
+    payload: {
+        id: string;
+    }
+}
+
+type ReadBookAction = {
+    type: ReadBookActionType,
     payload: {
         id: string;
     }
 }
 
 type AddBookAction = {
-    type: 'book/add',
+    type: AddBookActionType,
     payload: {
         id: string;
     }
 };
 
-type BookAction = DeleteBookAction | AddBookAction
+type BookAction = DeleteBookAction | AddBookAction | ReadBookAction;
 
 const bookReducer = (state: Book[], action: BookAction) => {
     switch (action.type) {
         case 'book/delete':
             return state.filter((book) => book.id !== action.payload.id)
+        case 'book/read':
+            return state.map((book) => {
+                if (book.id === action.payload.id) {
+                    return { ...book, read: !book.read }
+                }
+                return book;
+            })
         case 'book/add':
         default: 
             return state;
     }
 }
 
-export const Books = ({ data, setReadBook, checkIfWasRead }: BooksProps) => {
+export const Books = ({ data }: BooksProps) => {
     const listRef = useRef<HTMLUListElement>(null);
     const [currentHeight, setCurrentHeight] = useState<number | null>(null);
 
@@ -47,6 +63,15 @@ export const Books = ({ data, setReadBook, checkIfWasRead }: BooksProps) => {
                 id
             }
         });
+    }
+
+    const handleReadBook = (id: string) => {
+        dispatch({
+            type: 'book/read',
+            payload: {
+                id,
+            }
+        })
     }
 
     useEffect(() => {
@@ -69,7 +94,7 @@ export const Books = ({ data, setReadBook, checkIfWasRead }: BooksProps) => {
 
         return <p>Zbieraj dalej.</p>
     }
-
+    
     return (
         <div>
             <h2>Lista książek</h2>
@@ -78,16 +103,9 @@ export const Books = ({ data, setReadBook, checkIfWasRead }: BooksProps) => {
                 {(booksState).map((book) => (
                     <BookItem
                         key={book.id} 
-                        setReadBook={setReadBook} 
-                        wasRead={checkIfWasRead(book.id)}
-                        {...book}
-                    />
-                ))}
-                {(booksState).map((book) => (
-                    <BookItem
-                        key={book.id} 
-                        setReadBook={setReadBook} 
-                        wasRead={checkIfWasRead(book.id)}
+                        setReadBook={handleReadBook} 
+                        handleRemoveBook={handleDeleteBook}
+                        wasRead={book.read}
                         {...book}
                     />
                 ))}
