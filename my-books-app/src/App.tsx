@@ -5,6 +5,7 @@ import Header from './components/Header';
 import data from './data/books.json';
 import { UserInfo } from './components/UserInfo';
 import { WindowTitleChanger } from './components/WindowTitleChanger';
+import Readers from './components/Readers';
 
 function App() {
   const [ isTitleChanged, setIsTitleChanged ] = useState(true);
@@ -15,6 +16,7 @@ function App() {
       <Header name="Romku">
         <UserInfo />
       </Header>
+      <Readers />
       <Books 
         data={data}
       />
