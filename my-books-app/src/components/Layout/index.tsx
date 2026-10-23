@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import Header from "../Header";
-import { UserInfo } from "../UserInfo";
+import { UserInfoMemoized } from "../UserInfo";
 import Footer from "../Footer";
 import { Nav } from "../Nav";
 
@@ -8,7 +8,7 @@ const Layout = () => {
     return (
         <>
             <Header name="Romku">
-                <UserInfo />
+                <UserInfoMemoized />
             </Header>
             <Nav />
             <main>
