@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { booksReducer } from "../slices/booksSlice";
 import { useDispatch, useSelector } from 'react-redux';
+import { userReducer } from "../slices/userSlice";
 
 export const store = configureStore({
   reducer: {
-    books: booksReducer
+    books: booksReducer,
+    user: userReducer,
   }  
 })
 export type RootState = ReturnType<typeof store.getState>;

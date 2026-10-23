@@ -1,7 +1,7 @@
 // import { useState } from "react";
 import type { BookProps } from "./Book.types";
 import { Link } from "react-router";
-import { addVote } from "../../slices/booksSlice";
+import { addVote, selectVotesByBookId } from "../../slices/booksSlice";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 
 export function Book(props: BookProps) {
@@ -10,7 +10,7 @@ export function Book(props: BookProps) {
     // const [votes, setVotes] = useState(() => Math.floor(author.length * 2 / 5));
 
     const dispatch = useAppDispatch();
-    const votes = useAppSelector((state) => state.books.votes)
+    const votes = useAppSelector((state) => selectVotesByBookId(state, id))
 
     const clickHandler = () => {
         setReadBook(id)
@@ -25,7 +25,7 @@ export function Book(props: BookProps) {
 
     return (
         <>
-            <p>Na tę pozycję oddano: {votes[id] || 0} głosów</p>
+            <p>Na tę pozycję oddano: {votes} głosów</p>
             <h3>{title} - {author}</h3>
             <p>{publicationDate}</p>
             <button onClick={clickHandler}>{btnLabel}</button>

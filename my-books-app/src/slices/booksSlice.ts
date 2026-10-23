@@ -20,7 +20,13 @@ const booksSlice = createSlice({
             }
         }
     },
+    selectors: {
+        selectVotesByBookId: (booksState, bookId) => {
+            return booksState.votes[bookId] || 0;
+        }
+    },
 })
 
 export const booksReducer = booksSlice.reducer;
 export const { addVote } = booksSlice.actions;
+export const { selectVotesByBookId } = booksSlice.selectors;
