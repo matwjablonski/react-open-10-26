@@ -8,23 +8,17 @@ import { BooksPage } from './pages/BooksPage';
 import { BookPage } from './pages/BookPage';
 import { ContactPage } from './pages/ContactPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import { useState } from 'react';
 
 function App() {
-  // const [ isTitleChanged, setIsTitleChanged ] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
-  const handleLoginLogout = () => {
-    setIsAuthenticated(v => !v);
-  }
+  // const [ isTitleChanged, setIsTitleChanged ] = useState(true);  
 
   return (
     <main>
       <Routes>
-        <Route path="/" element={<Layout isAuthenticated={isAuthenticated} loginAction={handleLoginLogout} />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="readers" element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <ProtectedRoute>
               <ReadersPage />
             </ProtectedRoute>
           } />

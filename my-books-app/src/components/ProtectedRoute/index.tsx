@@ -1,13 +1,16 @@
-import type { PropsWithChildren } from "react"
+import type { ReactNode } from "react"
 import { Navigate } from "react-router"
+import { useAuth } from "../../hooks/useAuth";
 // import { HomePage } from "../../pages/HomePage"
 
-type ProtectedRouteProps = PropsWithChildren<{
-    isAuthenticated: boolean;
-}>;
+type ProtectedRouteProps = {
+    children: ReactNode;
+};
 
 export const ProtectedRoute = (props: ProtectedRouteProps) => {
-    if (props.isAuthenticated === false) {
+    const { isAuthenticated } = useAuth();
+    
+    if (isAuthenticated === false) {
         return <Navigate to="/" replace />
     }
 

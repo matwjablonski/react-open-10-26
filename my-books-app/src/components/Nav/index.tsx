@@ -1,11 +1,8 @@
 import { Link } from "react-router"
+import { useAuth } from "../../hooks/useAuth";
 
-type NavProps = {
-    loginAction: () => void;
-    isAuthenticated: boolean;
-}
-
-export const Nav = ({ isAuthenticated, loginAction }: NavProps) => {
+export const Nav = () => {
+    const { isAuthenticated, toggleAuthencation } = useAuth();
     return <nav>
         <ul>
             <li>
@@ -21,7 +18,7 @@ export const Nav = ({ isAuthenticated, loginAction }: NavProps) => {
                 <Link to="contact-us">Kontakt</Link>
             </li>
             <li>
-                <button onClick={loginAction}>{isAuthenticated ? 'Wyloguj' : 'Zaloguj'}</button>
+                <button onClick={toggleAuthencation}>{isAuthenticated ? 'Wyloguj' : 'Zaloguj'}</button>
             </li>
         </ul>
     </nav>

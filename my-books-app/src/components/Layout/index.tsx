@@ -4,18 +4,13 @@ import { UserInfo } from "../UserInfo";
 import Footer from "../Footer";
 import { Nav } from "../Nav";
 
-type LayoutProps = {
-    loginAction: () => void;
-    isAuthenticated: boolean;
-}
-
-const Layout = ({ loginAction, isAuthenticated }: LayoutProps) => {
+const Layout = () => {
     return (
         <>
             <Header name="Romku">
                 <UserInfo />
             </Header>
-            <Nav isAuthenticated={isAuthenticated} loginAction={loginAction} />
+            <Nav />
             <main>
                 <Outlet />
             </main>
