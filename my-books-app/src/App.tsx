@@ -2,12 +2,15 @@
 // import { WindowTitleChanger } from './components/WindowTitleChanger';
 import { Route, Routes } from 'react-router';
 import Layout from './components/Layout';
-import { HomePage } from './pages/HomePage';
+// import { HomePage } from './pages/HomePage';
 import ReadersPage from './pages/ReadersPage';
 import { BooksPage } from './pages/BooksPage';
 import { BookPage } from './pages/BookPage';
 import { ContactPage } from './pages/ContactPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { lazy } from 'react';
+
+const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })))
 
 function App() {
   // const [ isTitleChanged, setIsTitleChanged ] = useState(true);  
