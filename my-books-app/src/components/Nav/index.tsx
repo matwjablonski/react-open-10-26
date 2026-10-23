@@ -1,6 +1,11 @@
 import { Link } from "react-router"
 
-export const Nav = () => {
+type NavProps = {
+    loginAction: () => void;
+    isAuthenticated: boolean;
+}
+
+export const Nav = ({ isAuthenticated, loginAction }: NavProps) => {
     return <nav>
         <ul>
             <li>
@@ -14,6 +19,9 @@ export const Nav = () => {
             </li>
             <li>
                 <Link to="contact-us">Kontakt</Link>
+            </li>
+            <li>
+                <button onClick={loginAction}>{isAuthenticated ? 'Wyloguj' : 'Zaloguj'}</button>
             </li>
         </ul>
     </nav>
