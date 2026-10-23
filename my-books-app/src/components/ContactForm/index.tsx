@@ -1,6 +1,7 @@
 import { useRef, useState, type ChangeEvent } from "react"
 import { Form } from "../Form";
 import { Input } from "../Input";
+import Notification from "../Notification";
 
 type FormValues = {
     name: string;
@@ -42,6 +43,7 @@ export const ContactForm = () => {
                 <textarea value={formValues.message} name="message" onChange={handleChange}/>
                 <button type="submit">Wyślij</button>
             </Form>
+            <Notification message="Ustawiono focus na pierwszej pozycji" active={true}/>
         </div>
     )
 }
